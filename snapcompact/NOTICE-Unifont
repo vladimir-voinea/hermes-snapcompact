@@ -1,0 +1,25 @@
+GNU Unifont glyph bitmaps
+=========================
+
+The fonts/unifont16.bin glyph cache in this plugin contains bitmap glyphs
+extracted from GNU Unifont (unifont-17.0.04 BDF).
+
+GNU Unifont is Copyright (C) 1998-2025 Roman V. Pavlov, Paul Hardy and
+contributors, licensed under the GNU General Public License (GPLv2 or later)
+with the GNU Font Embedding Exception:
+
+    As a special exception, if you create a document which uses this font, and
+    embed this font or unaltered portions of this font into the document, this
+    font does not by itself cause the resulting document to be covered by the
+    GNU General Public License. This exception does not however invalidate any
+    other reasons why the document might be covered by the GNU General Public
+    License. If you modify this font, you may extend this exception to your
+    version of the font, but you are not obligated to do so. If you do not wish
+    to do so, delete this exception statement from your version.
+
+Source: https://mirrors.kernel.org/gnu/unifont/unifont-17.0.04/
+License: https://www.gnu.org/licenses/
+
+Extraction: STARTCHAR blocks with 8x16 (narrow) or 16x16 (wide) BBX were packed
+MSB-first into fonts/unifont16.bin (see glyphs.py for the format). The cache
+contains unaltered glyph bitmaps; the exception above covers this embedding.

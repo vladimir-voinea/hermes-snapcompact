@@ -1,0 +1,11 @@
+name: snapcompact
+description: >
+  Bitmap-frame context compression (oh-my-pi snapcompact equivalent): the discarded
+  middle of a conversation is serialized to bounded dense text, rasterized onto
+  model-shaped 1-bit PNG frames of 8x16 pixel glyphs, and re-attached to the context
+  as image parts on the compaction summary row. Deterministic and LLM-free; falls
+  back to a bounded text archive when the active model has no image input.
+version: 1.0.0
+engine: snapcompact
+config:
+  context.engine: snapcompact
