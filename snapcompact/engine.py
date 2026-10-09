@@ -208,12 +208,16 @@ class SnapCompactEngine(ContextCompressor):
         bypass_cooldown: bool = False,
     ) -> List[Dict[str, Any]]:
         # Cheap pre-gate: middles smaller than ~2 image tokens-worth can never
-        # shrink into frames; skip without side effects.
+        # shrink into frames; skip without side effects. The image-economics
+        # floor applies only on the vision path — text fallbacks can compress
+        # any middle the base compressor accepts.
         if len(messages) > 6 and not force:
             head = self._protect_head_size(messages)
             tail_cut = -self.protect_last_n if self.protect_last_n else None
             est = estimate_messages_tokens_rough(messages[head:tail_cut])
-            floor = max(int(self.sc_cfg.get("min_middle_tokens", 1_200)), 2 * _image_token_cost())
+            floor = int(self.sc_cfg.get("min_middle_tokens", 1_200))
+            if self._vision_capable():
+                floor = max(floor, 2 * _image_token_cost())
             if est and est < floor:
                 return messages
         return super().compress(
